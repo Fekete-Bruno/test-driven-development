@@ -2,8 +2,13 @@
     "compilerOptions": {
         "outDir": "dist",
         "esModuleInterop": true,
-        "module": "ES6"
+        "module": "CommonJS",
+        "target": "ES2020"
     },
+    "rootDirs": [
+        "src",
+        "tests"
+    ],
     "ts-node": {
         "esm": true
     }
