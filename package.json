@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon ./src/server.ts",
-    "test": "jest --passWithNoTests --runInBand",
-    "test:watch": "jest --watch --passWithNoTests --runInBand"
+    "test": "npx jest --passWithNoTests --runInBand",
+    "test:watch": "npx jest --watch --passWithNoTests --runInBand"
   },
   "type": "module",
   "keywords": [],
