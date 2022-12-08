@@ -1,5 +1,5 @@
-import database from "../database/mock-database.js";
-import { To_do } from "../protocols.js";
+import { To_do } from "../protocols";
+import database from "../database/mock-database";
 
 function findMany(){
     return database;
@@ -10,11 +10,21 @@ function findOne(id: number){
 }
 
 function insertOne(todo: To_do_Creator){
+    if(database.length===0){
+        database.push({
+            id: 1,
+            text: todo.text,
+            is_done: todo.is_done
+        });
+        return { id: 1 };
+    }
+    let id = database[database.length-1].id + 1
     database.push({
-        id: database[database.length-1].id + 1,
+        id,
         text: todo.text,
         is_done: todo.is_done
-    })
+    });
+    return id;
 }
 
 function updateOne(todo: To_do,newTodo: To_do_Creator){
