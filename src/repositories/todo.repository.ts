@@ -1,4 +1,4 @@
-import { To_do } from "../protocols";
+import { To_do, To_do_Creator } from "../protocols";
 import database from "../database/mock-database";
 
 function findMany(){
@@ -35,8 +35,6 @@ function updateOne(todo: To_do,newTodo: To_do_Creator){
 function cleanDb(){
     database.length = 0;
 }
-
-export type To_do_Creator = Omit <To_do,"id">
 
 const repository = {
     findMany,
