@@ -1,5 +1,4 @@
-import database from "../database/mock-database";
-import { To_do } from "../protocols";
+import database from "../database/mock-database.js";
 
 function findMany(){
     return database;
