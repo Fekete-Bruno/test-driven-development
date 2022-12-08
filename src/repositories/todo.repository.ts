@@ -30,6 +30,7 @@ function insertOne(todo: To_do_Creator){
 function updateOne(todo: To_do,newTodo: To_do_Creator){
     todo.text = newTodo.text;
     todo.is_done = newTodo.is_done;
+    return {id: todo.id};
 }
 
 function cleanDb(){

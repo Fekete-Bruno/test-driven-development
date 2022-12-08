@@ -1,7 +1,8 @@
 import express from "express";
 import cors from "cors";
-import { read, readId } from "./controllers/read.controller";
 import { create } from "./controllers/create.controller";
+import { update } from "./controllers/update.controller";
+import { read, readId } from "./controllers/read.controller";
 
 const app = express();
 
@@ -11,6 +12,7 @@ app
     .get("/health", (_req,res) => res.send("Connection is working!"))
     .get("/",read)
     .get("/:id",readId)
-    .post("/",create);
+    .post("/",create)
+    .put("/:id",update);
     
 export default app;

@@ -26,6 +26,8 @@ describe("PUT /",()=>{
     });
 
     it("should respond with status 400 when body is not sent",async () => {
+        createRandomToDo();
+        const before = await server.get("/")
         const response = await server.put("/1");
     
         expect(response.status).toBe(httpStatus.BAD_REQUEST);
@@ -61,23 +63,22 @@ describe("PUT /",()=>{
         expect(response.body).toEqual({
             id:1
         });
+    });
+    it("should update post on database",async () => {
+        createRandomToDo();
+        const body: To_do_Creator ={
+            text:faker.lorem.sentence(),
+            is_done:faker.datatype.boolean()
+        }
+        const before = await server.get("/");
 
-        it("should update post on database",async () => {
-            createRandomToDo();
-            const body: To_do_Creator ={
-                text:faker.lorem.sentence(),
-                is_done:faker.datatype.boolean()
-            }
-            const before = await server.get("/");
-    
-            await server.put("/1").send(body);
-            
-            const after = await server.get("/");
-    
-            expect(before.body.length).toEqual(1);
-            expect(after.body.length).toEqual(1);
-            expect(after.body[0].text).toEqual(body.text);
-            expect(after.body[0].is_done).toEqual(body.is_done);
-        });
+        await server.put("/1").send(body);
+        
+        const after = await server.get("/");
+
+        expect(before.body.length).toEqual(1);
+        expect(after.body.length).toEqual(1);
+        expect(after.body[0].text).toEqual(body.text);
+        expect(after.body[0].is_done).toEqual(body.is_done);
     });
 });
