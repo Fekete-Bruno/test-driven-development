@@ -13,8 +13,24 @@ beforeEach(() => {
 });
 
 describe("POST /",()=>{
-    it("should respond with status 400 when body is incorrect",async () => {
+    it("should respond with status 400 when body is not sent",async () => {
         const response = await server.post("/");
+
+        expect(response.status).toBe(httpStatus.BAD_REQUEST);
+    });
+    it("should respond with status 400 when body text is incorrect",async () => {
+        const response =  await server.post("/").send({
+            text:faker.datatype.number(),
+            is_done:faker.datatype.boolean()
+        });
+
+        expect(response.status).toBe(httpStatus.BAD_REQUEST);
+    });
+    it("should respond with status 400 when body is_done is incorrect",async () => {
+        const response =  await server.post("/").send({
+            text:faker.lorem.sentence(),
+            is_done:faker.datatype.number()
+        });
 
         expect(response.status).toBe(httpStatus.BAD_REQUEST);
     });
