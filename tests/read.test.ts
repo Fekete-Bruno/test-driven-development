@@ -49,7 +49,7 @@ describe("GET /:id", ()=>{
         expect(response.status).toBe(httpStatus.NOT_FOUND);
     });
 
-    describe("when id is valid",async () => {
+    describe("when id is valid", () => {
         it("should respond with status 200 and data for id",async() =>{
 
             createRandomToDo();
@@ -61,11 +61,11 @@ describe("GET /:id", ()=>{
             
             const response = await server.get(`/${id}`);
             expect(response.status).toBe(httpStatus.OK);
-            expect(response.body).toEqual([{
+            expect(response.body).toEqual({
                 id,
                 text:todo.text,
                 is_done:todo.is_done
-            }]);
+            });
         });
     });
 
