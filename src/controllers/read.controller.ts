@@ -1,8 +1,6 @@
 import { Request, Response } from "express";
 import httpStatus from "http-status";
-import repository from "../repositories/todo.repository";
 import readService from "../services/read.service";
-
 
 export function read(_req:Request,res:Response){
     try {
