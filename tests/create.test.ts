@@ -44,6 +44,6 @@ describe("POST /",()=>{
         const after = await server.get("/");
 
         expect(before.body.length).toEqual(0);
-        expect(after.body.length).toEqual(0);
+        expect(after.body.length).toEqual(1);
     });
 });
