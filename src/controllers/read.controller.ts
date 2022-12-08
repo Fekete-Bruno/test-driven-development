@@ -1,20 +1,24 @@
 import { Request, Response } from "express";
 import httpStatus from "http-status";
 import repository from "../repositories/todo.repository";
+import readService from "../services/read.service";
 
 
 export function read(_req:Request,res:Response){
-    res.status(httpStatus.OK).send(repository.findMany());
+    try {
+        const response = readService.getAll();
+        return res.status(httpStatus.OK).send(response);
+    } catch (error) {
+        return res.sendStatus(httpStatus.NOT_FOUND);
+    }
 }
 
 export function readId(req:Request,res:Response){
     const { id } = req.params
-    if(isNaN(Number(id))){
+    try {
+        const response = readService.getById(Number(id));
+        return res.status(httpStatus.OK).send(response);
+    } catch (error) {
         return res.sendStatus(httpStatus.NOT_FOUND);
     }
-    const data = repository.findOne(Number(id));
-    if(typeof data === 'undefined'){
-        return res.sendStatus(httpStatus.NOT_FOUND);
-    }
-    return res.status(httpStatus.OK).send(data);
 }
