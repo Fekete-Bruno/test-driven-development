@@ -1,14 +1,14 @@
 import httpStatus from "http-status";
 import supertest from "supertest";
 import { faker } from "@faker-js/faker";
-import { createRandomToDo, createToDo } from "./factories/todo.factory";
-import repository, {To_do_Creator} from "../src/repositories/todo.repository";
+import { To_do_Creator } from "../src/protocols";
+import { clearAll, createRandomToDo, createToDo } from "./factories/todo.factory";
 import app from "../src/app";
 
 const server = supertest(app);
 
 beforeEach(() => {
-    repository.cleanDb();
+    clearAll();
 });
 
 describe("GET /", ()=>{
