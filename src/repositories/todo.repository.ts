@@ -24,7 +24,7 @@ function insertOne(todo: To_do_Creator){
         text: todo.text,
         is_done: todo.is_done
     });
-    return id;
+    return { id };
 }
 
 function updateOne(todo: To_do,newTodo: To_do_Creator){
